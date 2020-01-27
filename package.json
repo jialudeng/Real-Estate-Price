@@ -1,6 +1,6 @@
 {
   "name": "JD-service",
-  "version": "1",
+  "version": "1.0.0",
   "description": "",
   "author": "Jialu Deng",
   "license": "",
@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "./server/db.js",
+    "seed": "node ./server/db.js",
     "webpack-dev": "webpack -d --watch"
   },
   "dependencies": {
