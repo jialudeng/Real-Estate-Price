@@ -1,6 +1,6 @@
 {
   "name": "JD-service",
-  "version": "1",
+  "version": "1.0.0",
   "description": "",
   "author": "Jialu Deng",
   "license": "",
@@ -8,9 +8,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "./server/db.js"
+    "seed": "node ./database/db.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "mongoose": "^5.8.9"
   },
   "devDependencies": {
