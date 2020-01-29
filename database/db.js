@@ -33,8 +33,23 @@ const graphSchema = new Schema({
 
 const Graph = mongoose.model('Graph', graphSchema);
 
-Graph.insertMany(data.generateGraph(100), (err) => {
-  if (err) console.log(err)
-});
+
+let save = (callback) => {
+  Graph.insertMany(data.generateGraph(100), (err) => {
+    if (err) console.log(err)
+  });
+  callback();
+}
+
+let retrieve = (callback) => {
+  let query = Graph.find()
+  query.exec((err, docs) => {
+    if (err) console.log(err)
+    callback(docs);
+  })
+}
 
 
+
+module.exports.save = save;
+module.exports.retrieve = retrieve;
