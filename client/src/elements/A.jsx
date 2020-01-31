@@ -11,5 +11,6 @@ const A = styled.a`
     color: #7A48D6;
   };
   text-decoration: none;
-`
+`;
+
 export default A;

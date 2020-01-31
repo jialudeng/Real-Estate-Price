@@ -1,14 +1,24 @@
+/* eslint-disable max-len */
 import React from 'react';
-import Div from '../elements/Div.jsx';
-import Span from '../elements/Span.jsx'
+import PropTypes from 'prop-types';
+import Div from '../elements/Div';
+import Span from '../elements/Span';
 
 
-function Subtitle(props) {
+function Subtitle({ onHistoryClick }) {
   return (
     <Div.LeftDiv>
-      <Span.TitleSpan large black onClick={props.onHistoryClick}><strong>Zestimate history</strong></Span.TitleSpan>
-    </Div.LeftDiv>  
-  )
+      <Span.TitleSpan large black onClick={onHistoryClick}><strong>Zestimate history</strong></Span.TitleSpan>
+    </Div.LeftDiv>
+  );
 }
+
+Subtitle.defaultProps = {
+  onHistoryClick: undefined,
+};
+
+Subtitle.propTypes = {
+  onHistoryClick: PropTypes.func,
+};
 
 export default Subtitle;

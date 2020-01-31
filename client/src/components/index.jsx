@@ -1,13 +1,12 @@
+/* eslint-disable max-len */
 import React from 'react';
 
-import Title from './Title.jsx';
-import Header from './Header.jsx';
-import Subtitle from './Subtitle.jsx';
-import Tooltip from './Tooltip.jsx';
+import Title from './Title';
+import Header from './Header';
+import Subtitle from './Subtitle';
+import Tooltip from './Tooltip';
 
-import A from '../elements/A.jsx';
-
-
+import A from '../elements/A';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -17,90 +16,109 @@ class Graph extends React.Component {
       showSalesRange: false,
       showHistory: false,
       tooltipLeft: 0,
-      triggerOffsetTop: 0
-    }
+      triggerOffsetTop: 0,
+    };
+    this.handleZestimateClick = this.handleZestimateClick.bind(this);
+    this.handleSalesClick = this.handleSalesClick.bind(this);
+    this.handleHistoryClick = this.handleHistoryClick.bind(this);
   }
 
-  handleZestimateClick(event) {
+  handleZestimateClick(e) {
+    const { showZestimate } = this.state;
     this.setState({
-      showZestimate: !this.state.showZestimate,
-      triggerOffsetTop: event.target.offsetTop,
-      tooltipLeft: event.target.offsetLeft + event.target.clientWidth + 10
-    })
+      showZestimate: !showZestimate,
+      triggerOffsetTop: e.target.offsetTop,
+      tooltipLeft: e.target.offsetLeft + e.target.clientWidth + 10,
+    });
   }
 
-  handleSalesClick(event) {
+  handleSalesClick(e) {
+    const { showSalesRange } = this.state;
     this.setState({
-      showSalesRange: !this.state.showSalesRange,
-      triggerOffsetTop: event.target.offsetTop,
-      tooltipLeft: event.target.offsetLeft + event.target.clientWidth + 10
-    })
+      showSalesRange: !showSalesRange,
+      triggerOffsetTop: e.target.offsetTop,
+      tooltipLeft: e.target.offsetLeft + e.target.clientWidth + 10,
+    });
   }
 
-  handleHistoryClick(event) {
+  handleHistoryClick(e) {
+    const { showHistory } = this.state;
     this.setState({
-      showHistory: !this.state.showHistory,
-      triggerOffsetTop: event.target.offsetTop,
-      tooltipLeft: event.target.offsetLeft + event.target.offsetWidth + 10
-    })
+      showHistory: !showHistory,
+      triggerOffsetTop: e.target.offsetTop,
+      tooltipLeft: e.target.offsetLeft + e.target.offsetWidth + 10,
+    });
   }
 
   render() {
+    const {
+      showZestimate, showSalesRange, showHistory, triggerOffsetTop, tooltipLeft,
+    } = this.state;
     return (
       <div>
-          <Header />
-          <div id="title-div">
-          <Title 
-            price={'$1,246,000'}
-            priceRange={'$1.10M - $1.35M'}
-            onZestimateClick={this.handleZestimateClick.bind(this)}
-            onSalesClick={this.handleSalesClick.bind(this)}
+        <br />
+        <br />
+        <br />
+        <Header />
+        <div id="title-div">
+          <Title
+            price="$1,246,000"
+            priceRange="$1.10M - $1.35M"
+            onZestimateClick={this.handleZestimateClick}
+            onSalesClick={this.handleSalesClick}
           />
-          </div>
-          {this.state.showZestimate && 
-            <Tooltip 
-              triggerOffsetTop={this.state.triggerOffsetTop}
-              left={this.state.tooltipLeft}
-            >
-            The Zestimate is Zillow's best estimate of this home's market value. It is not an appraisal and it should be used as a starting point. <A href="https://www.zillow.com/zestimate/">Learn more</A>. 
-            <br></br>
-            <br></br> 
-            If your home facts are wrong, your Zestimate may be incorrect. <A href="Update them here">Update them here</A>. 
-            <br></br>
-            <br></br>  
-            The Zestimate incorporates multiple data models and responds to factors like:
-            <br></br>
-            <br></br>  
-            Neighborhood details
-            Home facts 
-            <br></br>
-            <br></br> 
-            Popularity on Zillow
-            Listing price
-            </Tooltip>
-          }
-          {this.state.showSalesRange && 
+        </div>
+        {showZestimate
+          && (
             <Tooltip
-              triggerOffsetTop={this.state.triggerOffsetTop}
-              left={this.state.tooltipLeft}
+              triggerOffsetTop={triggerOffsetTop}
+              left={tooltipLeft}
             >
-            We calculate the estimated sales range based on the current market and the info we have about this home.
+           The Zestimate is Zillow&quot;s best estimate of this home&quot;s market value. It is not an appraisal and it should be used as a starting point.
+              <A href="https://www.zillow.com/zestimate/">Learn more</A>
+          .
+              <br />
+              <br />
+          If your home facts are wrong, your Zestimate may be incorrect.
+              <A href="Update them here">Update them here</A>
+          .
+              <br />
+              <br />
+          The Zestimate incorporates multiple data models and responds to factors like:
+              <br />
+              <br />
+          Neighborhood details
+          Home facts
+              <br />
+              <br />
+          Popularity on Zillow
+          Listing price
             </Tooltip>
-          }
-          {this.state.showHistory && 
-            <Tooltip
-              triggerOffsetTop={this.state.triggerOffsetTop}
-              left={this.state.tooltipLeft}
-            >
-            See a Zestimate jump? The Zestimate can change when the home is listed for sale, the home facts are updated, or the market fluctuates.
-            </Tooltip>
-          }
-          <Subtitle 
-            onHistoryClick={this.handleHistoryClick.bind(this)}
-          />
+          )}
+        {showSalesRange
+          && (
+          <Tooltip
+            triggerOffsetTop={triggerOffsetTop}
+            left={tooltipLeft}
+          >
+          We calculate the estimated sales range based on the current market and the info we have about this home.
+          </Tooltip>
+          )}
+        {showHistory
+          && (
+          <Tooltip
+            triggerOffsetTop={triggerOffsetTop}
+            left={tooltipLeft}
+          >
+          See a Zestimate jump? The Zestimate can change when the home is listed for sale, the home facts are updated, or the market fluctuates.
+          </Tooltip>
+          )}
+        <Subtitle
+          onHistoryClick={this.handleHistoryClick}
+        />
       </div>
-    )
+    );
   }
-};
+}
 
 export default Graph;

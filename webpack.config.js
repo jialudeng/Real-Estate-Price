@@ -10,7 +10,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     compress: true,
-    port: 9000
+    port: 9000,
   },
   module: {
     rules: [
@@ -18,7 +18,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+
+};

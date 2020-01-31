@@ -1,23 +1,30 @@
+/* eslint-disable max-len */
 import React from 'react';
-import Div from '../elements/Div.jsx'
-import Span from '../elements/Span.jsx';
-import P from '../elements/P.jsx'
+import Div from '../elements/Div';
+import Span from '../elements/Span';
+import P from '../elements/P';
 
 
-function Title(props) {
+function Title({ onZestimateClick, price, onSalesClick, priceRange }) {
   return (
     <div>
-    <Div.CenterDiv>
-      <Span.TitleSpan black onClick={props.onZestimateClick}>Zestimate<sup>®</sup></Span.TitleSpan>
-    </Div.CenterDiv>
-    <Div.CenterDiv>
-      <P.PriceP>{props.price}</P.PriceP>
-    </Div.CenterDiv>
-    <Div.CenterDiv>
-      <Span.TitleSpan onClick={props.onSalesClick}>Estimated sales range: {props.priceRange}</Span.TitleSpan>
-    </Div.CenterDiv>
+      <Div.CenterDiv>
+        <Span.TitleSpan black onClick={onZestimateClick}>
+        Zestimate
+          <sup>®</sup>
+        </Span.TitleSpan>
+      </Div.CenterDiv>
+      <Div.CenterDiv>
+        <P.PriceP>{price}</P.PriceP>
+      </Div.CenterDiv>
+      <Div.CenterDiv>
+        <Span.TitleSpan onClick={onSalesClick}>
+        Estimated sales range:
+          {priceRange}
+        </Span.TitleSpan>
+      </Div.CenterDiv>
     </div>
-  )
+  );
 }
 
 export default Title;
