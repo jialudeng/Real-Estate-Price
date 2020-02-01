@@ -1,7 +1,4 @@
 /* eslint-disable no-param-reassign */
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
-
 const cityPrices = [738700, 748300, 747700, 749000, 745800, 744600, 739100, 741700, 742500, 742000,
   734400, 724300, 716800, 709900, 707400, 704300, 699100, 690400, 688000, 687300, 688100, 685800,
   683500, 684000, 683500, 689100, 696000, 702000, 706700, 712800, 725900, 740200, 754400, 764900,
@@ -23,32 +20,11 @@ const addresses = ['601 Van Ness Ave APT 29, San Francisco, CA 94102',
   '380 14th St APT 506, San Francisco, CA 94103',
   '531 Kirkham St, San Francisco, CA 94122'];
 
-const dateArray = years.reduce((array, year) => {
-  for (let i = 0; i < months.length; i += 1) {
-    array.push(`${months[i]} ${year}`);
-  }
-  return array;
-}, []);
-
-function generateDatePrice(prices) {
-  return dateArray.reduce((array, date, index) => {
-    array.push({ date, price: prices[index] });
-    return array;
-  }, []);
-}
-
 function generatePrices() {
   return cityPrices.map((price) => {
     price += Math.floor(Math.random() * 2000);
     return price;
   });
-}
-
-function generatePropertyDatePrice(prices) {
-  return dateArray.reduce((array, date, index) => {
-    array.push({ date, price: prices[index], status: '' });
-    return array;
-  }, []);
 }
 
 function generateName(category) {
@@ -61,20 +37,28 @@ const generateGraph = (num) => {
   let array = [];
   for (let i = 0; i < num; i += 1) {
     const oneGraph = {
-      city: {
-        name: 'San Francisco',
-        datePrice: generateDatePrice(cityPrices),
-      },
-      neighborhood: {
-        name: generateName(neighborhood),
-        datePrice: generateDatePrice(generatePrices()),
-      },
-      property: {
-        name: generateName(addresses),
-        datePriceStatus: generatePropertyDatePrice(generatePrices()),
+      graphData: {
+        city: {
+          name: 'San Francisco',
+          price: cityPrices,
+        },
+        neighborhood: {
+          name: generateName(neighborhood),
+          price: generatePrices(),
+        },
+        property: {
+          name: generateName(addresses),
+          price: generatePrices(),
+          sold: 'Sold for $636K on 6/10/13',
+        },
       },
     };
     oneGraph.id = i;
+    let { zestimate } = oneGraph;
+    // eslint-disable-next-line prefer-destructuring
+    zestimate = oneGraph.graphData.property.price[120];
+    oneGraph.updateZestimate = `https://www.zillow.com/sellerlanding/edityourhome/${i}`;
+    oneGraph.salesRange = [(zestimate - zestimate * 0.1), zestimate + zestimate * 0.1];
     array.push(oneGraph);
   }
   return array;

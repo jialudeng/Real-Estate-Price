@@ -1,18 +1,19 @@
+/* eslint-disable arrow-parens */
 import styled from 'styled-components';
 
-const CenterDiv = styled.div`
+export const CenterDiv = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
 `;
 
-const LeftDiv = styled.div`
+export const LeftDiv = styled.div`
   display: flex;
   justify-content: left;
   margin: 12px 16px 8px;
 `;
 
-const TooltipDiv = styled.div`
+export const TooltipDiv = styled.div`
   position: absolute;
   display: inline-block;
   top: ${props => props.top}px;
@@ -33,5 +34,3 @@ const TooltipDiv = styled.div`
     border-color: transparent #2A2A33 transparent transparent;;
   }
 `;
-
-export default { CenterDiv, LeftDiv, TooltipDiv };

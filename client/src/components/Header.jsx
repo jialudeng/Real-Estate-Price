@@ -1,10 +1,10 @@
 import React from 'react';
-import P from '../elements/P.jsx';
+import { HeaderP } from '../elements/P';
 
 function Header() {
   return (
-    <P.HeaderP>Home value</P.HeaderP>
-  )
-};
+    <HeaderP>Home value</HeaderP>
+  );
+}
 
 export default Header;

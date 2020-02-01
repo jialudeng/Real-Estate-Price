@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
 
@@ -19,7 +19,10 @@ class Graph extends React.Component {
       showHistory: false,
       tooltipLeft: 0,
       triggerOffsetTop: 0,
-      
+      zestimate: 0,
+      salesRange: 0,
+      graphData: {},
+      updateZestimate: '',
     };
     this.handleZestimateClick = this.handleZestimateClick.bind(this);
     this.handleSalesClick = this.handleSalesClick.bind(this);
@@ -29,7 +32,14 @@ class Graph extends React.Component {
   componentDidMount() {
     axios.get('/seed')
       .then((response) => {
-        console.log(response.data)
+        const oneGraph = response.data[0];
+        console.log(oneGraph);
+        this.setState({
+          zestimate: oneGraph.zestimate,
+          salesRange: oneGraph.salesRange,
+          graphData: {city: oneGraph.city, neighborhood: oneGraph.neighborhood, property: oneGraph.property},
+          
+        })
       })
   }
 

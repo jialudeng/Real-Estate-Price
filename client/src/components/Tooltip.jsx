@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Div from '../elements/Div';
-import Span from '../elements/Span';
+import { TooltipDiv } from '../elements/Div';
+import { TooltipSpan } from '../elements/Span';
 
 
 class Tooltip extends React.Component {
@@ -22,15 +22,15 @@ class Tooltip extends React.Component {
 
   render() {
     return (
-      <Div.TooltipDiv
+      <TooltipDiv
         id="tooltip"
         top={this.state.top}
         left={this.state.left}
       >
-        <Span.TooltipSpan>
+        <TooltipSpan>
           {this.props.children}
-        </Span.TooltipSpan>
-      </Div.TooltipDiv>
+        </TooltipSpan>
+      </TooltipDiv>
     );
   }
 }

@@ -1,15 +1,15 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Div from '../elements/Div';
-import Span from '../elements/Span';
+import { LeftDiv } from '../elements/Div';
+import { TitleSpan } from '../elements/Span';
 
 
 function Subtitle({ onHistoryClick }) {
   return (
-    <Div.LeftDiv>
-      <Span.TitleSpan large black onClick={onHistoryClick}><strong>Zestimate history</strong></Span.TitleSpan>
-    </Div.LeftDiv>
+    <LeftDiv>
+      <TitleSpan large black onClick={onHistoryClick}><strong>Zestimate history</strong></TitleSpan>
+    </LeftDiv>
   );
 }
 
