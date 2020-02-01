@@ -1,10 +1,12 @@
 const express = require('express');
+
 const app = express();
 const port = 3003;
 const db = require('../database/db.js');
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.get('/seed', (req, res) => {
   db.save(() => {
@@ -12,6 +14,6 @@ app.get('/seed', (req, res) => {
       res.json(docs);
     });
   });
-})
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => {console.log(`Example app listening on port ${port}!`)})

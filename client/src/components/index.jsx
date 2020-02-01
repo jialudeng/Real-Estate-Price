@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
+import axios from 'axios';
 
 import Title from './Title';
 import Header from './Header';
 import Subtitle from './Subtitle';
 import Tooltip from './Tooltip';
+import Chart from './Chart';
 
 import A from '../elements/A';
 
@@ -17,10 +19,18 @@ class Graph extends React.Component {
       showHistory: false,
       tooltipLeft: 0,
       triggerOffsetTop: 0,
+      
     };
     this.handleZestimateClick = this.handleZestimateClick.bind(this);
     this.handleSalesClick = this.handleSalesClick.bind(this);
     this.handleHistoryClick = this.handleHistoryClick.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/seed')
+      .then((response) => {
+        console.log(response.data)
+      })
   }
 
   handleZestimateClick(e) {
@@ -116,6 +126,7 @@ class Graph extends React.Component {
         <Subtitle
           onHistoryClick={this.handleHistoryClick}
         />
+        <Chart />
       </div>
     );
   }

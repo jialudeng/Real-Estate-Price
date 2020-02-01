@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/graph', {useNewUrlParser: true});
-const Schema = mongoose.Schema;
+
+mongoose.connect('mongodb://localhost/graph', { useNewUrlParser: true });
+const { Schema } = mongoose;
 const db = mongoose.connection;
 db.dropDatabase();
 const data = require('./data.js');
@@ -9,47 +11,45 @@ const graphSchema = new Schema({
   id: Number,
   city: {
     name: String,
-    price: [{
-      date: String, 
-      price: Number
-    }]
+    datePrice: [{
+      date: String,
+      price: Number,
+    }],
   },
   neighborhood: {
     name: String,
-    price: [{
-      date: String, 
-      price: Number
-    }]
+    datePrice: [{
+      date: String,
+      price: Number,
+    }],
   },
-  property:  {
+  property: {
     name: String,
-    price: [{
-      date: String, 
-      price: Number, 
-      status: String
-    }]
+    datePrice: [{
+      date: String,
+      price: Number,
+      status: String,
+    }],
   },
 });
 
 const Graph = mongoose.model('Graph', graphSchema);
 
 
-let save = (callback) => {
-  Graph.insertMany(data.generateGraph(100), (err) => {
-    if (err) console.log(err)
+const save = (callback) => {
+  Graph.insertMany(data.generateGraph(1), (err) => {
+    if (err) console.log(err);
   });
   callback();
-}
+};
 
-let retrieve = (callback) => {
-  let query = Graph.find()
+const retrieve = (callback) => {
+  const query = Graph.find();
   query.exec((err, docs) => {
-    if (err) console.log(err)
+    if (err) console.log(err);
     callback(docs);
-  })
-}
-
-
+  });
+};
 
 module.exports.save = save;
 module.exports.retrieve = retrieve;
