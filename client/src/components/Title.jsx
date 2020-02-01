@@ -1,11 +1,14 @@
 /* eslint-disable max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Div from '../elements/Div';
 import Span from '../elements/Span';
 import P from '../elements/P';
 
 
-function Title({ onZestimateClick, price, onSalesClick, priceRange }) {
+function Title({
+  onZestimateClick, price, onSalesClick, priceRange
+}) {
   return (
     <div>
       <Div.CenterDiv>

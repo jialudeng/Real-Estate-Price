@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Div from '../elements/Div.jsx';
-import Span from '../elements/Span.jsx';
-import A from '../elements/A.jsx';
+import Div from '../elements/Div';
+import Span from '../elements/Span';
 
 
 class Tooltip extends React.Component {
@@ -11,19 +10,19 @@ class Tooltip extends React.Component {
     this.state = {
       top: this.props.triggerOffsetTop,
       left: this.props.left,
-    }
+    };
   }
 
   componentDidMount() {
     const height = document.getElementById('tooltip').clientHeight - 20;
     this.setState({
-      top: this.state.top - (height / 2)
-    })
+      top: this.state.top - (height / 2),
+    });
   }
 
   render() {
     return (
-      <Div.TooltipDiv 
+      <Div.TooltipDiv
         id="tooltip"
         top={this.state.top}
         left={this.state.left}
@@ -32,9 +31,8 @@ class Tooltip extends React.Component {
           {this.props.children}
         </Span.TooltipSpan>
       </Div.TooltipDiv>
-    )
+    );
   }
-  
-};
+}
 
 export default Tooltip;
