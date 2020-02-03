@@ -1,18 +1,19 @@
+/* eslint-disable arrow-parens */
 import styled from 'styled-components';
 
-const CenterDiv = styled.div`
+export const CenterDiv = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
 `;
 
-const LeftDiv = styled.div`
+export const LeftDiv = styled.div`
   display: flex;
   justify-content: left;
   margin: 12px 16px 8px;
 `;
 
-const TooltipDiv = styled.div`
+export const TooltipDiv = styled.div`
   position: absolute;
   display: inline-block;
   top: ${props => props.top}px;
@@ -34,4 +35,93 @@ const TooltipDiv = styled.div`
   }
 `;
 
-export default { CenterDiv, LeftDiv, TooltipDiv };
+export const ChartDiv = styled.div`
+  font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif;
+  position: relative;
+  padding-right: 0px;
+  padding-bottom: 40px;
+  font-size: 14px;
+  margin: auto;
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  line-height: 1.5;
+  color: #2A2A33;
+`;
+
+export const XAxisDiv = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  left: 0;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const XTickDiv = styled.div`
+  &:after {
+    margin-top: 4px;
+    display: inline-block;
+    content: attr(data-value);
+    color: black;
+  }
+`;
+
+export const YAxisDiv = styled.div`
+  position: absolute;
+  top: 0;
+  left: 488px;
+  right: 0;
+  width: 40px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const YTickDiv = styled.div`
+  &:after {
+    margin-left: 4px;
+    content: attr(data-value);
+    color: black;
+    display: inline-block;
+  }
+`;
+
+export const LegendsDiv = styled.div`
+  line-height: 1.5;
+  color: #2A2A33;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 64px;
+  padding: 16px 5px 16px;
+  margin: 0px 16px 32px;
+`;
+
+export const FlexColDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin-right: 8px;
+`;
+
+export const FlexRowDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+  flex-wrap: wrap;
+`;
+
+export const LegendImageDiv = styled.div`
+  margin-right: 8px;
+  display: block;
+`;
+
+export const IconDiv = styled.div`
+  margin-top: 8px;
+  display: flex;
+  align-items: left;
+  max-width: 50%;
+  flex: 1 0 auto;
+`;

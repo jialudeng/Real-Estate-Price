@@ -1,55 +1,55 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/graph', {useNewUrlParser: true});
-const Schema = mongoose.Schema;
+
+mongoose.connect('mongodb://localhost:27017/graph', { useNewUrlParser: true, useUnifiedTopology: true });
+const { Schema } = mongoose;
 const db = mongoose.connection;
 db.dropDatabase();
 const data = require('./data.js');
 
 const graphSchema = new Schema({
   id: Number,
-  city: {
-    name: String,
-    price: [{
-      date: String, 
-      price: Number
-    }]
-  },
-  neighborhood: {
-    name: String,
-    price: [{
-      date: String, 
-      price: Number
-    }]
-  },
-  property:  {
-    name: String,
-    price: [{
-      date: String, 
-      price: Number, 
-      status: String
-    }]
+  zestimate: String,
+  updateZestimate: String,
+  salesRange: String,
+  graphData: {
+    city: {
+      name: String,
+      price: [Number],
+    },
+    neighborhood: {
+      name: String,
+      price: [Number],
+    },
+    property: {
+      name: String,
+      price: [Number],
+      sold: String,
+    },
   },
 });
 
 const Graph = mongoose.model('Graph', graphSchema);
 
 
-let save = (callback) => {
-  Graph.insertMany(data.generateGraph(100), (err) => {
-    if (err) console.log(err)
-  });
-  callback();
-}
+const save = (callback) => {
+  Graph.insertMany(data.generateGraph(1))
+    .then(() => callback())
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-let retrieve = (callback) => {
-  let query = Graph.find()
-  query.exec((err, docs) => {
-    if (err) console.log(err)
-    callback(docs);
-  })
-}
-
-
+const retrieve = (callback) => {
+  const query = Graph.find();
+  query.exec()
+    .then((docs) => {
+      callback(docs);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports.save = save;
 module.exports.retrieve = retrieve;

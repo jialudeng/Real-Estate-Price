@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "node ./server/db.js",
+    "seed": "node ./database/db.js",
     "start": "nodemon ./server/index.js",
     "webpack": "webpack -d --watch",
     "webpack:server": "webpack-dev-server",
@@ -17,7 +17,8 @@
     "test:coverage": "jest --coverage --colors"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
     "mongoose": "^5.8.9",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
