@@ -9,9 +9,9 @@ const data = require('./data.js');
 
 const graphSchema = new Schema({
   id: Number,
-  zestimate: Number,
+  zestimate: String,
   updateZestimate: String,
-  salesRange: [Number],
+  salesRange: String,
   graphData: {
     city: {
       name: String,

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
 
@@ -6,9 +5,8 @@ import Title from './Title';
 import Header from './Header';
 import Subtitle from './Subtitle';
 import Tooltip from './Tooltip';
+import ZestimateTooltip from './ZestimateTooltip';
 import Chart from './Chart';
-
-import A from '../elements/A';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -17,6 +15,7 @@ class Graph extends React.Component {
       showZestimate: false,
       showSalesRange: false,
       showHistory: false,
+      showChart: false,
       tooltipLeft: 0,
       triggerOffsetTop: 0,
       zestimate: 0,
@@ -32,15 +31,17 @@ class Graph extends React.Component {
   componentDidMount() {
     axios.get('/seed')
       .then((response) => {
-        const oneGraph = response.data[0];
-        console.log(oneGraph);
+        const {
+          zestimate, salesRange, graphData, updateZestimate,
+        } = response.data[response.data.length - 1];
         this.setState({
-          zestimate: oneGraph.zestimate,
-          salesRange: oneGraph.salesRange,
-          graphData: {city: oneGraph.city, neighborhood: oneGraph.neighborhood, property: oneGraph.property},
-          
-        })
-      })
+          zestimate,
+          salesRange,
+          graphData,
+          updateZestimate,
+          showChart: true,
+        });
+      });
   }
 
   handleZestimateClick(e) {
@@ -72,48 +73,28 @@ class Graph extends React.Component {
 
   render() {
     const {
-      showZestimate, showSalesRange, showHistory, triggerOffsetTop, tooltipLeft,
+      showZestimate, showSalesRange, showHistory, showChart, triggerOffsetTop, tooltipLeft, zestimate, salesRange, graphData, updateZestimate,
     } = this.state;
     return (
       <div>
         <br />
         <br />
-        <br />
         <Header />
         <div id="title-div">
           <Title
-            price="$1,246,000"
-            priceRange="$1.10M - $1.35M"
+            price={zestimate}
+            priceRange={salesRange}
             onZestimateClick={this.handleZestimateClick}
             onSalesClick={this.handleSalesClick}
           />
         </div>
         {showZestimate
           && (
-            <Tooltip
+            <ZestimateTooltip
               triggerOffsetTop={triggerOffsetTop}
-              left={tooltipLeft}
-            >
-           The Zestimate is Zillow&quot;s best estimate of this home&quot;s market value. It is not an appraisal and it should be used as a starting point.
-              <A href="https://www.zillow.com/zestimate/">Learn more</A>
-          .
-              <br />
-              <br />
-          If your home facts are wrong, your Zestimate may be incorrect.
-              <A href="Update them here">Update them here</A>
-          .
-              <br />
-              <br />
-          The Zestimate incorporates multiple data models and responds to factors like:
-              <br />
-              <br />
-          Neighborhood details
-          Home facts
-              <br />
-              <br />
-          Popularity on Zillow
-          Listing price
-            </Tooltip>
+              tooltipLeft={tooltipLeft}
+              updateZestimate={updateZestimate}
+            />
           )}
         {showSalesRange
           && (
@@ -136,7 +117,7 @@ class Graph extends React.Component {
         <Subtitle
           onHistoryClick={this.handleHistoryClick}
         />
-        <Chart />
+        {showChart && <Chart data={graphData} />}
       </div>
     );
   }

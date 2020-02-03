@@ -7,10 +7,12 @@ export const HeaderP = styled.p`
   border-bottom: 1px solid rgb(209, 209, 213);
   padding: 32px 0px 16px;
   margin: 0px 16px 32px;
+  font-weight: 900;
 `;
 
 export const PriceP = styled.p`
   font-family: "Open Sans", Tahoma, Geneva, sans-serif; 
   font-size: 22px;
   line-height: 12px;
+  font-weight: 900;
 `;

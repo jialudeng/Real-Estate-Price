@@ -22,8 +22,8 @@ function Title({
       </CenterDiv>
       <CenterDiv>
         <TitleSpan onClick={onSalesClick}>
-        Estimated sales range:
-          {priceRange}
+        Estimated sales range:&nbsp;
+          <strong>{priceRange}</strong>
         </TitleSpan>
       </CenterDiv>
     </div>

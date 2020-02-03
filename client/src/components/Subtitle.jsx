@@ -8,7 +8,7 @@ import { TitleSpan } from '../elements/Span';
 function Subtitle({ onHistoryClick }) {
   return (
     <LeftDiv>
-      <TitleSpan large black onClick={onHistoryClick}><strong>Zestimate history</strong></TitleSpan>
+      <TitleSpan large black bold onClick={onHistoryClick}>Zestimate history</TitleSpan>
     </LeftDiv>
   );
 }
