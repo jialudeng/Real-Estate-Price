@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 const cityPrices = [738700, 748300, 747700, 749000, 745800, 744600, 739100, 741700, 742500, 742000,
@@ -37,6 +38,11 @@ function generateName(category) {
   return category[randomIndex];
 }
 
+function generateSold(prices) {
+  const randomIndex = Math.floor(Math.random() * prices.length);
+  return [prices[randomIndex], randomIndex]; // [soldPrice, soldIndex]
+}
+
 function addComa(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -64,18 +70,17 @@ const generateGraph = (num) => {
         property: {
           name: generateName(addresses),
           price: generatePrices(),
-          sold: 'Sold for $636K on 6/10/13',
         },
       },
     };
     oneGraph.id = i;
-    // eslint-disable-next-line prefer-destructuring
     const zestimateNum = oneGraph.graphData.property.price[120];
     oneGraph.zestimate = `$${addComa(zestimateNum)}`;
     oneGraph.updateZestimate = `https://www.zillow.com/sellerlanding/edityourhome/${i}`;
     const low = generateRange(zestimateNum - zestimateNum * 0.1);
     const high = generateRange(zestimateNum + zestimateNum * 0.1);
     oneGraph.salesRange = `$${low} - $${high}`;
+    oneGraph.graphData.property.sold = generateSold(oneGraph.graphData.property.price);
     array.push(oneGraph);
   }
   return array;

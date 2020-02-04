@@ -125,3 +125,19 @@ export const IconDiv = styled.div`
   max-width: 50%;
   flex: 1 0 auto;
 `;
+
+export const PopupDiv = styled.div`
+  transform: translate(${props => props.left}px, -250px);
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
+  position: absolute;
+  text-align: center;
+  width: 110px;
+  border-radius: 3px;
+`;
+
+export const PopupTextDiv = styled.div`
+  font-size: 14px;
+  padding: 4px 0px;
+`;

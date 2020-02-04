@@ -13,3 +13,8 @@ export const NeighborhoodPath = styled.path`
 export const PropertyPath = styled.path`
   stroke: rgb(0, 106, 255);
 `;
+
+export const LinePath = styled.path`
+  stroke: rgb(209, 209, 213);
+  stroke-width: 1px;
+`;
