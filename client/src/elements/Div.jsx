@@ -127,7 +127,7 @@ export const IconDiv = styled.div`
 `;
 
 export const PopupDiv = styled.div`
-  transform: translate(${props => props.left}px, -250px);
+  transform: translate(${props => props.left}px, ${props => props.sold ? "-250" : "-220"}px);
   z-index: 1;
   background: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
