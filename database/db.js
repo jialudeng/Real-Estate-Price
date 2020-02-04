@@ -24,7 +24,7 @@ const graphSchema = new Schema({
     property: {
       name: String,
       price: [Number],
-      sold: [String],
+      sold: [Number],
     },
   },
 });

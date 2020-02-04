@@ -1,20 +1,34 @@
+/* eslint-disable no-use-before-define */
 import React from 'react';
 
 import { PopupDiv, PopupTextDiv } from '../elements/Div';
 
 function Popup(props) {
-  const { left, soldPrice, soldDate } = props;
+  const { left, soldPrice, soldDate, sold, date } = props;
   return (
     <PopupDiv left={left}>
-      <PopupTextDiv>
-        <div>
-          Sold for
-        </div>
-        <div>${generateRange(soldPrice)}</div>
-        <div>
-          on {soldDate}
-        </div>
-      </PopupTextDiv>
+      {sold
+        && (
+          <PopupTextDiv sold>
+            <div>
+              Sold for
+            </div>
+            <div>
+              $
+              {generateRange(soldPrice)}
+            </div>
+            <div>
+              on&nbsp;
+              {soldDate}
+            </div>
+          </PopupTextDiv>
+        )}
+      {!sold
+        && (
+          <PopupTextDiv>
+            {date}
+          </PopupTextDiv>
+        )}
     </PopupDiv>
   );
 }
