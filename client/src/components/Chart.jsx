@@ -19,12 +19,18 @@ class Chart extends React.Component {
       priceMax: 2000000,
       soldPrice: '',
       soldDate: '',
-      soldIndex: -1,
+      soldIndex: 0,
       showSold: false,
       showPopup: false,
       showLine: false,
-      popupLeft: -1,
-      xCoordinate: -1,
+      popupLeft: 0,
+      xCoordinate: 0,
+      propertyPrices: [],
+      neighborhoodPrices: [],
+      cityPrices: [],
+      propertyPrice: 'NA',
+      neighborhoodPrice: 'NA',
+      cityPrice: 'NA',
     };
     this.svgDiv = React.createRef();
     // this.handleSoldMouse = this.handleSoldMouse.bind(this);
@@ -35,22 +41,17 @@ class Chart extends React.Component {
   componentDidMount() {
     const [soldPrice, soldDate] = this.props.data.property.sold;
     this.setState({
-      soldPrice: soldPrice.toString(),
+      soldPrice: generateRange(soldPrice),
       soldDate: calendar[soldDate],
       soldIndex: soldDate,
+      propertyPrices: this.props.data.property.price,
+      neighborhoodPrices: this.props.data.neighborhood.price,
+      cityPrices: this.props.data.city.price,
     });
   }
 
-  // handleSoldMouse(e) {
-  //   const { showSold } = this.state;
-  //   this.setState({
-  //     showSold: !showSold,
-  //     popupLeft: (e.clientX - this.svgDiv.current.offsetLeft - 55 ).toString(),
-  //   });
-  // }
-
   handleMouseOver(e) {
-    const { width, indexMax } = this.state;
+    const { width, indexMax, propertyPrices, neighborhoodPrices, cityPrices } = this.state;
     const xCoordinate = e.clientX - this.svgDiv.current.offsetLeft;
     const currentIndex = Math.floor((xCoordinate / width) * indexMax)
     if (currentIndex < this.state.soldIndex + 3 && currentIndex > this.state.soldIndex - 3) {
@@ -68,6 +69,9 @@ class Chart extends React.Component {
       showLine: true,
       xCoordinate,
       popupLeft: xCoordinate - 55,
+      propertyPrice: `$${generateRange(propertyPrices[currentIndex])}`,
+      neighborhoodPrice: `$${generateRange(neighborhoodPrices[currentIndex])}`,
+      cityPrice: `$${generateRange(cityPrices[currentIndex])}`,
     })
   }
 
@@ -76,12 +80,15 @@ class Chart extends React.Component {
       showPopup: false,
       showLine: false,
       showSold: false,
+      propertyPrice: 'NA',
+      neighborhoodPrice: 'NA',
+      cityPrice: 'NA',
     })
   }
 
   render() {
     const { city, neighborhood, property } = this.props.data;
-    const { width, height, indexMax, priceMax, showSold, popupLeft, soldPrice, soldDate, showLine, xCoordinate, showPopup } = this.state;
+    const { width, height, indexMax, priceMax, showSold, popupLeft, soldPrice, soldDate, showLine, xCoordinate, showPopup, propertyPrice, neighborhoodPrice, cityPrice } = this.state;
 
     const x = index => (index / indexMax) * width;
     const getIndex = x => Math.floor((x / width) * indexMax);
@@ -98,7 +105,7 @@ class Chart extends React.Component {
 
     return (
       <div>
-        <Legends city={city.name} neighborhood={neighborhood.name} />
+        <Legends city={city.name} neighborhood={neighborhood.name} propertyPrice={propertyPrice} neighborhoodPrice={neighborhoodPrice} cityPrice={cityPrice}/>
         <ChartDiv ref={this.svgDiv} width={width.toString()} height={height.toString()}>
           <Svg onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} width={width.toString()} height={height.toString()}>
             {showLine && <LinePath d={`M${xCoordinate} 0 L${xCoordinate} 211`} stroke="black" />}
@@ -130,5 +137,11 @@ const calendar = years.reduce((cal, year) => {
   }
   return cal;
 }, []);
+
+function generateRange(number) {
+  if (number < 1000000) {
+    return parseInt(number / 1000, 10) + 'K';
+  } return (parseInt(number / 10000, 10) / 100).toFixed(2) + 'M';
+}
 
 export default Chart;

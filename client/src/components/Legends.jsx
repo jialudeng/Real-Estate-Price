@@ -7,7 +7,7 @@ import Img from '../elements/Img';
 
 
 function Legends(props) {
-  const { city, neighborhood } = props;
+  const { city, neighborhood, propertyPrice, neighborhoodPrice, cityPrice } = props;
   return (
     <LegendsDiv>
       <FlexColDiv>
@@ -24,7 +24,7 @@ function Legends(props) {
             <Img />
           </LegendImageDiv>
           <LegendSpan bold>
-            $1.1M
+            {propertyPrice}
           </LegendSpan>
         </FlexRowDiv>
       </FlexColDiv>
@@ -42,7 +42,7 @@ function Legends(props) {
             <Img />
           </LegendImageDiv>
           <LegendSpan bold>
-            $900K
+            {neighborhoodPrice}
           </LegendSpan>
       </FlexRowDiv>
       </FlexColDiv>
@@ -60,7 +60,7 @@ function Legends(props) {
             <Img />
           </LegendImageDiv>
           <LegendSpan bold>
-            $1.5M
+            {cityPrice}
           </LegendSpan>
         </FlexRowDiv>
       </FlexColDiv>

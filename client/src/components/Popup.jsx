@@ -15,7 +15,7 @@ function Popup(props) {
             </div>
             <div>
               $
-              {generateRange(soldPrice)}
+              {soldPrice}
             </div>
             <div>
               on&nbsp;
@@ -31,16 +31,6 @@ function Popup(props) {
         )}
     </PopupDiv>
   );
-}
-
-function generateRange(number) {
-  if (number < 1000000) {
-    return parseInt(number / 1000, 10) + 'K';
-  } return (parseInt(number / 10000, 10) / 100).toFixed(2) + 'M';
-}
-
-function addComa(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default Popup;
