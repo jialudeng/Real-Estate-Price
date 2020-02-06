@@ -17,7 +17,7 @@ class Graph extends React.Component {
       showHistory: false,
       showChart: false,
       tooltipLeft: 0,
-      triggerOffsetTop: 0,
+      tooltipTop: 0,
       zestimate: 0,
       salesRange: 0,
       graphData: {},
@@ -48,8 +48,8 @@ class Graph extends React.Component {
     const { showZestimate } = this.state;
     this.setState({
       showZestimate: !showZestimate,
-      triggerOffsetTop: e.target.offsetTop,
-      tooltipLeft: e.target.offsetLeft + e.target.clientWidth + 10,
+      tooltipTop: e.clientY,
+      tooltipLeft: e.target.offsetLeft + (e.target.clientWidth / 2),
     });
   }
 
@@ -57,8 +57,8 @@ class Graph extends React.Component {
     const { showSalesRange } = this.state;
     this.setState({
       showSalesRange: !showSalesRange,
-      triggerOffsetTop: e.target.offsetTop,
-      tooltipLeft: e.target.offsetLeft + e.target.clientWidth + 10,
+      tooltipTop: e.clientY,
+      tooltipLeft: e.target.offsetLeft + (e.target.clientWidth / 2),
     });
   }
 
@@ -66,14 +66,14 @@ class Graph extends React.Component {
     const { showHistory } = this.state;
     this.setState({
       showHistory: !showHistory,
-      triggerOffsetTop: e.target.offsetTop,
-      tooltipLeft: e.target.offsetLeft + e.target.offsetWidth + 10,
+      tooltipTop: e.clientY,
+      tooltipLeft: e.target.offsetLeft + (e.target.offsetWidth / 2),
     });
   }
 
   render() {
     const {
-      showZestimate, showSalesRange, showHistory, showChart, triggerOffsetTop, tooltipLeft, zestimate, salesRange, graphData, updateZestimate,
+      showZestimate, showSalesRange, showHistory, showChart, tooltipTop, tooltipLeft, zestimate, salesRange, graphData, updateZestimate,
     } = this.state;
     return (
       <div>
@@ -91,15 +91,15 @@ class Graph extends React.Component {
         {showZestimate
           && (
             <ZestimateTooltip
-              triggerOffsetTop={triggerOffsetTop}
-              tooltipLeft={tooltipLeft}
+              top={tooltipTop}
+              left={tooltipLeft}
               updateZestimate={updateZestimate}
             />
           )}
         {showSalesRange
           && (
           <Tooltip
-            triggerOffsetTop={triggerOffsetTop}
+            top={tooltipTop}
             left={tooltipLeft}
           >
           We calculate the estimated sales range based on the current market and the info we have about this home.
@@ -108,7 +108,7 @@ class Graph extends React.Component {
         {showHistory
           && (
           <Tooltip
-            triggerOffsetTop={triggerOffsetTop}
+            top={tooltipTop}
             left={tooltipLeft}
           >
           See a Zestimate jump? The Zestimate can change when the home is listed for sale, the home facts are updated, or the market fluctuates.

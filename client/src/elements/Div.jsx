@@ -26,12 +26,12 @@ export const TooltipDiv = styled.div`
   &:after {
     content: " ";
     position: absolute;
-    top: 50%;
-    right: 100%; 
-    margin-top: -5px;
-    border-width: 8px 8px 8px 0;
+    top: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 8px;
     border-style: solid;
-    border-color: transparent #2A2A33 transparent transparent;;
+    border-color: #2A2A33 transparent transparent transparent;
   }
 `;
 

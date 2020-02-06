@@ -9,16 +9,18 @@ class Tooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      top: this.props.triggerOffsetTop,
+      top: this.props.top,
       left: this.props.left,
     };
     this.tooltipDiv = React.createRef();
   }
 
   componentDidMount() {
-    const height = this.tooltipDiv.current.clientHeight - 20;
+    const height = this.tooltipDiv.current.clientHeight;
+    const width = this.tooltipDiv.current.clientWidth;
     this.setState({
-      top: this.state.top - (height / 2),
+      top: this.state.top - height - 15,
+      left: this.state.left - (width / 2),
     });
   }
 
