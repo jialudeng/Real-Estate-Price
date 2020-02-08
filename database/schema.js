@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://172.17.0.2:27017/graph', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://172.17.0.2:27017/graph', { useNewUrlParser: true, useUnifiedTopology: true })
+  .catch(err => console.log(err));
 const { Schema } = mongoose;
 const db = mongoose.connection;
 db.dropDatabase();
