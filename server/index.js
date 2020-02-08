@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const port = 3003;
-const db = require('../database/db.js');
+const db = require('../database/schema.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

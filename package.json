@@ -5,10 +5,9 @@
   "author": "Jialu Deng",
   "license": "",
   "engines": {
-    "node": ">=6.13.0"
+    "node": "^8.10.0"
   },
   "scripts": {
-    "seed": "node ./database/db.js",
     "start": "nodemon ./server/index.js",
     "webpack": "webpack -d --watch",
     "webpack:server": "webpack-dev-server",
@@ -36,7 +35,6 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
