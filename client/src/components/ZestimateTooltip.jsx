@@ -6,11 +6,12 @@ import { IconSpan } from '../elements/Span';
 import { I } from '../elements/I';
 
 function ZestimateTooltip(props) {
-  const { top, left, updateZestimate } = props;
+  const { top, left, updateZestimate, handleClick } = props;
   return (
     <Tooltip
       top={top}
       left={left}
+      handleClick={handleClick}
     >
     The Zestimate is Zillow&quot;s best estimate of this home&quot;s market value. It is not an appraisal and it should be used as a starting point.
       <A href="https://www.zillow.com/zestimate/">&nbsp;Learn more</A>

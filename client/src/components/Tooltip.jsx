@@ -19,7 +19,7 @@ class Tooltip extends React.Component {
     const height = this.tooltipDiv.current.clientHeight;
     const width = this.tooltipDiv.current.clientWidth;
     this.setState({
-      top: this.state.top - height - 15,
+      top: this.state.top - height,
       left: this.state.left - (width / 2),
     });
   }
@@ -31,7 +31,7 @@ class Tooltip extends React.Component {
         top={this.state.top}
         left={this.state.left}
       >
-        <ButtonI className="material-icons">close</ButtonI>
+        <ButtonI className="material-icons" onClick={this.props.handleClick}>close</ButtonI>
         <TooltipSpan>
           {this.props.children}
         </TooltipSpan>
