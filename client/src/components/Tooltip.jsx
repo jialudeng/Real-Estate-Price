@@ -3,7 +3,7 @@ import React from 'react';
 
 import { TooltipDiv } from '../elements/Div';
 import { TooltipSpan } from '../elements/Span';
-
+import { ButtonI } from '../elements/I';
 
 class Tooltip extends React.Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class Tooltip extends React.Component {
         top={this.state.top}
         left={this.state.left}
       >
+        <ButtonI className="material-icons">close</ButtonI>
         <TooltipSpan>
           {this.props.children}
         </TooltipSpan>

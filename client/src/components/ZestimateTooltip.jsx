@@ -3,7 +3,7 @@ import Tooltip from './Tooltip';
 import A from '../elements/A';
 import { IconDiv, FlexRowDiv } from '../elements/Div';
 import { IconSpan } from '../elements/Span';
-import I from '../elements/I';
+import { I } from '../elements/I';
 
 function ZestimateTooltip(props) {
   const { top, left, updateZestimate } = props;
