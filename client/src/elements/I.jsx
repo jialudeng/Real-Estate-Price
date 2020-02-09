@@ -11,7 +11,6 @@ export const ButtonI = styled.i`
   position: absolute;
   right: 0px;
   top: 0px;
-
   &:hover{
     cursor: pointer;
     color: #5389C3;

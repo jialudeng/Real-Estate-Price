@@ -41,7 +41,7 @@ export const ChartDiv = styled.div`
   padding-right: 10px;
   padding-bottom: 10px;
   font-size: 14px;
-  margin: auto 
+  margin: auto; 
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   line-height: 1.5;
