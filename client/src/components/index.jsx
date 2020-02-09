@@ -26,6 +26,10 @@ class Graph extends React.Component {
     this.handleZestimateClick = this.handleZestimateClick.bind(this);
     this.handleSalesClick = this.handleSalesClick.bind(this);
     this.handleHistoryClick = this.handleHistoryClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.zTooltip = React.createRef();
+    this.sTooltip = React.createRef();
+    this.hTooltip = React.createRef();
   }
 
   componentDidMount() {
@@ -71,12 +75,34 @@ class Graph extends React.Component {
     });
   }
 
+  handleClose(e) {
+    const { showZestimate, showSalesRange, showHistory } = this.state;
+    console.log(e.target.innerHTML)
+    console.log('-------')
+    console.log(this.sTooltip.innerHTML)
+    if (showZestimate && e.target.innerHTML != this.zTooltip.innerHTML) {
+      this.setState({
+        showZestimate: !showZestimate,
+      })
+    }
+    if (showSalesRange && e.target.innerHTML != this.sTooltip.innerHTML) {
+      this.setState({
+        showSalesRange: !showSalesRange,
+      })
+    }
+    if (showHistory && e.target.innerHTML != this.hTooltip.innerHTML) {
+      this.setState({
+        showHistory: !showHistory,
+      })
+    }
+  }
+
   render() {
     const {
       showZestimate, showSalesRange, showHistory, showChart, tooltipTop, tooltipLeft, zestimate, salesRange, graphData, updateZestimate,
     } = this.state;
     return (
-      <div>
+      <div onClick={this.handleClose}>
         <br />
         <br />
         <Header />
@@ -95,6 +121,7 @@ class Graph extends React.Component {
               left={tooltipLeft}
               updateZestimate={updateZestimate}
               handleClick={this.handleZestimateClick}
+              ref={this.zTooltip}
             />
           )}
         {showSalesRange
@@ -103,6 +130,7 @@ class Graph extends React.Component {
             top={tooltipTop}
             left={tooltipLeft}
             handleClick={this.handleSalesClick}
+            ref={this.sTooltip}
           >
           We calculate the estimated sales range based on the current market and the info we have about this home.
           </Tooltip>
@@ -113,6 +141,7 @@ class Graph extends React.Component {
             top={tooltipTop}
             left={tooltipLeft}
             handleClick={this.handleHistoryClick}
+            ref={this.hTooltip}
           >
           See a Zestimate jump? The Zestimate can change when the home is listed for sale, the home facts are updated, or the market fluctuates.
           </Tooltip>
