@@ -38,10 +38,10 @@ export const TooltipDiv = styled.div`
 export const ChartDiv = styled.div`
   font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif;
   position: relative;
-  padding-right: 0px;
-  padding-bottom: 40px;
+  padding-right: 10px;
+  padding-bottom: 10px;
   font-size: 14px;
-  margin: auto;
+  margin: auto 
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   line-height: 1.5;
@@ -49,11 +49,12 @@ export const ChartDiv = styled.div`
 `;
 
 export const XAxisDiv = styled.div`
+  font-size: 12px;
   position: absolute;
   bottom: 0;
-  height: 40px;
+  height: 20px;
   left: 0;
-  right: 40px;
+  right: 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -68,12 +69,13 @@ export const XTickDiv = styled.div`
 `;
 
 export const YAxisDiv = styled.div`
+  font-size: 12px;
   position: absolute;
   top: 0;
-  left: 488px;
+  left: 410px;
   right: 0;
-  width: 40px;
-  bottom: 40px;
+  width: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -13,8 +13,8 @@ class Chart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: 468,
-      height: 211,
+      width: 400,
+      height: 180,
       indexMax: 131,
       priceMax: 2000000,
       soldPrice: '',
@@ -33,7 +33,6 @@ class Chart extends React.Component {
       cityPrice: 'NA',
     };
     this.svgDiv = React.createRef();
-    // this.handleSoldMouse = this.handleSoldMouse.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
@@ -145,3 +144,4 @@ function generateRange(number) {
 }
 
 export default Chart;
+
