@@ -19,7 +19,7 @@ class Tooltip extends React.Component {
     const height = this.tooltipDiv.current.clientHeight;
     const width = this.tooltipDiv.current.clientWidth;
     this.setState({
-      top: this.state.top - height,
+      top: this.state.top - height - 5,
       left: this.state.left - (width / 2),
     });
   }

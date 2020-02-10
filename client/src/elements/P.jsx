@@ -5,7 +5,7 @@ export const HeaderP = styled.p`
   line-height: 32px;
   font-family: "Open Sans", Tahoma, Geneva, sans-serif;
   border-bottom: 1px solid rgb(209, 209, 213);
-  padding: 32px 0px 16px;
+  padding: 32px 0px 32px;
   margin: 0px 16px 32px;
   font-weight: 900;
 `;

@@ -52,7 +52,7 @@ class Graph extends React.Component {
     const { showZestimate } = this.state;
     this.setState({
       showZestimate: !showZestimate,
-      tooltipTop: e.clientY,
+      tooltipTop: e.target.offsetTop - document.getElementById('detailpanel').scrollTop,
       tooltipLeft: e.target.offsetLeft + (e.target.clientWidth / 2),
     });
   }
@@ -61,7 +61,7 @@ class Graph extends React.Component {
     const { showSalesRange } = this.state;
     this.setState({
       showSalesRange: !showSalesRange,
-      tooltipTop: e.clientY,
+      tooltipTop: e.target.offsetTop - document.getElementById('detailpanel').scrollTop,
       tooltipLeft: e.target.offsetLeft + (e.target.clientWidth / 2),
     });
   }
@@ -70,16 +70,13 @@ class Graph extends React.Component {
     const { showHistory } = this.state;
     this.setState({
       showHistory: !showHistory,
-      tooltipTop: e.clientY,
+      tooltipTop: e.target.offsetTop - document.getElementById('detailpanel').scrollTop,
       tooltipLeft: e.target.offsetLeft + (e.target.offsetWidth / 2),
     });
   }
 
   handleClose(e) {
     const { showZestimate, showSalesRange, showHistory } = this.state;
-    console.log(e.target.innerHTML)
-    console.log('-------')
-    console.log(this.sTooltip.innerHTML)
     if (showZestimate && e.target.innerHTML != this.zTooltip.innerHTML) {
       this.setState({
         showZestimate: !showZestimate,
