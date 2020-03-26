@@ -3,3 +3,4 @@ The graph depicts the real estate prices of the city, the neighborhood and the p
 
 ## Demo
 <img src="https://i.imgur.com/Uux7hbO.gif" />
+<img src="https://i.imgur.com/OBkaIb8.gif" width="500" />
